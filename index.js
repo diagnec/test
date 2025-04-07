@@ -1,5 +1,5 @@
-function somme(a, b) {
-   return a+b; 
+function multiplier(a, b) {
+   return a*b; 
 }
 
-console.log(somme(2,7)); 
+console.log(multiplier(2,7)); 
