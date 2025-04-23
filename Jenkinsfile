@@ -1,36 +1,18 @@
 pipeline {
-    agent any  // Utilise n'importe quel agent disponible
+    agent any
 
     stages {
-        stage('Bienvenue') {
+        stage('Build Docker Image') {
             steps {
-                echo ' Bienvenue dans votre premier pipeline Jenkins !'
+                script {
+                    docker.build('mon-image')
+                }
             }
         }
 
-        stage('Clonage du dépôt') {
+        stage('Run Docker Container') {
             steps {
-                git url: 'https://github.com/diagnec/test.git'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'Étape de compilation (build simulé)'
-                // Par exemple : sh 'make build'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo ' Tests unitaires simulés'
-                // Par exemple : sh 'pytest' ou npm test
-            }
-        }
-
-        stage('Déploiement') {
-            steps {
-                echo ' Déploiement fictif terminé !'
+                sh 'docker run --rm mon-image'
             }
         }
     }
