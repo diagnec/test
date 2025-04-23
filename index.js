@@ -2,4 +2,4 @@ function addition(a, b) {
    return a+b; 
 }
 
-console.log(soustraction(2,7)); 
+console.log(addition(2,7)); 
