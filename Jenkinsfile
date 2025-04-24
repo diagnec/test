@@ -1,18 +1,21 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = 'hello-jenkins-test'
+        TAG = 'latest'
+    }
+
     stages {
-        stage('Build Docker Image') {
+        stage('Build Image') {
             steps {
-                script {
-                    docker.build('mon-image')
-                }
+                sh "docker build -t $IMAGE_NAME:$TAG ."
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Run Container') {
             steps {
-                sh 'docker run --rm mon-image'
+                sh "docker run --rm $IMAGE_NAME:$TAG"
             }
         }
     }
